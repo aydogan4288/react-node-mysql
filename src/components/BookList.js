@@ -6,27 +6,34 @@ import BookActions from "../actions/bookActions";
 import { Link } from "react-router-dom";
 
 export class BookList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   createBookRow(book) {
     return (
-      <tr key={book.id}>
+      <tr key={book.book_id}>
         <td> {book.book_id} </td>
         <td> {book.title} </td>
         <td> {book.author} </td>
         <td>
-          <Link to={"/edit/" + this.book_id} type="button">
-            Edit
-          </Link>
-        </td>
-        <td>
-          {" "}
-          <button>Delete</button>{" "}
+          <button type="button" onClick={() => this.deleteBook(book)}>
+            Delete
+          </button>
         </td>
       </tr>
     );
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     BookActions.readBooks();
+  }
+
+  updateBook(book) {
+    BookActions.editBook(book);
+  }
+
+  deleteBook(book) {
+    BookActions.deleteBook(book);
   }
 
   render() {
@@ -51,5 +58,6 @@ export class BookList extends React.Component {
 }
 
 BookList.propTypes = {
-  bookList: PropTypes.array.isRequired
+  bookList: PropTypes.array.isRequired,
+  book_id: PropTypes.any
 };

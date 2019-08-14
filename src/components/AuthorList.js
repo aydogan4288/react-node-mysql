@@ -11,19 +11,24 @@ export class AuthorList extends React.Component {
         <td> {author.id} </td>
         <td> {author.author_name} </td>
         <td>
-          {" "}
-          <button> Edit </button>
-        </td>
-        <td>
-          {" "}
-          <button> Delete </button>
+          <button type="button" onClick={() => this.deleteAuthor(author)}>
+            Delete
+          </button>
         </td>
       </tr>
     );
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     AuthorActions.readAuthors();
+  }
+
+  updateAuthor(author) {
+    AuthorActions.editAuthor(author);
+  }
+
+  deleteAuthor(author) {
+    AuthorActions.deleteAuthor(author);
   }
 
   render() {

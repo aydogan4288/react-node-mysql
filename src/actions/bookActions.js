@@ -13,6 +13,59 @@ const BookActions = {
         data: res.data
       });
     });
+  },
+  deleteBook: function(book) {
+    axios
+      .delete("http://localhost:3000/book/" + book.book_id)
+      .then(() => {
+        Dispatcher.dispatch({
+          actionType: "delete_book",
+          data: book
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  // editBook: function(book) {
+  //   const new_title = prompt("Whats the new name of the book?", book.title);
+  //   const new_author = prompt("What is the new Author id?", book.author);
+
+  //   const newBook = {
+  //     book_id: book.book_id,
+  //     title: new_title,
+  //     author: new_author
+  //   };
+
+  //   this.updateBook(newBook);
+  // },
+
+  updateBook: function(book) {
+    axios
+      .put("http://localhost:3000/book", book)
+      .then(() => {
+        Dispatcher.dispatch({
+          actionType: "update_book",
+          data: book
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  addBook: function(book) {
+    axios
+      .post("http://localhost:3000/book", book)
+      .then(() => {
+        Dispatcher.dispatch({
+          actionType: "add_book",
+          data: book
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 

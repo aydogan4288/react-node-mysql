@@ -10,6 +10,8 @@ import BookStore from "../stores/bookStore";
 import AuthorStore from "../stores/authorStore";
 import AddBook from "./addBook.jsx";
 import AddAuthor from "./addAuthor.jsx";
+import EditAuthor from "./editAuthor.jsx";
+import EditBook from "./editBook.jsx";
 
 export class App extends React.Component {
   constructor(props) {
@@ -28,6 +30,15 @@ export class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/add-books" component={AddBook} />
           <Route path="/add-authors" component={AddAuthor} />
+
+          <Route
+            path="/edit-book/:id"
+            render={props => (
+              <EditBook {...props} bookList={this.state.bookList} />
+            )}
+          />
+          <Route path="/edit-author/:id" component={EditAuthor} />
+
           <Route
             path="/books"
             render={props => (

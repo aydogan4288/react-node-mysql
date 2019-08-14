@@ -23,20 +23,8 @@ export class Header extends React.Component {
               </Link>
             </li>
             <li>
-              <Link to="/add-books" replace>
-                {" "}
-                +1{" "}
-              </Link>
-            </li>
-            <li>
               <Link to="/authors" replace>
                 Authors
-              </Link>
-            </li>
-            <li>
-              <Link to="/add-authors" replace>
-                {" "}
-                +1{" "}
               </Link>
             </li>
           </ul>
